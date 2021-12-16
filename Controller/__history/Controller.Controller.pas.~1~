@@ -1,0 +1,16 @@
+unit Controller.Controller;
+
+interface
+
+uses
+  Controller.Interfaces;
+
+type
+  TController = class(TInterfacedObject, iController)
+    private
+    public
+  end;
+
+implementation
+
+end.

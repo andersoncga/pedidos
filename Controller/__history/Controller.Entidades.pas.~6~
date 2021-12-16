@@ -1,0 +1,64 @@
+unit Controller.Entidades;
+
+interface
+
+uses
+  Controller.Interfaces,
+  Model.DAO.Interfaces,
+  Model.Entidades.PedidosItens,
+  Model.Entidades.Pedidos,
+  Model.DAO.PedidosItens,
+  Model.DAO.Pedidos;
+
+type
+  TControllerEntidades = class(TInterfacedObject, iControllerEntidades)
+    private
+      FPedidos :  iDaoEntidade<TPedidos>;
+      FPedidosItens : iDaoEntidade<TPedidosItens>;
+
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New: iControllerEntidades;
+      function Pedidos :  iDaoEntidade<TPedidos>;
+      function PedidosItens : iDaoEntidade<TPedidosItens>;
+
+  end;
+
+implementation
+
+{ TControllerEntidades }
+
+constructor TControllerEntidades.Create;
+begin
+
+end;
+
+destructor TControllerEntidades.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TControllerEntidades.New: iControllerEntidades;
+begin
+  Result  :=  Self.Create;
+end;
+
+function TControllerEntidades.Pedidos: iDaoEntidade<TPedidos>;
+begin
+  if not Assigned(FPedidos) then
+    FPedidos  :=  TDAOPedido.New;
+
+  Result  :=  FPedidos;
+end;
+
+function TControllerEntidades.PedidosItens: iDaoEntidade<TPedidosItens>;
+begin
+  if not Assigned(FPedidosItens) then
+    FPedidosItens  :=  TDAOPedidosItens.New;
+
+  Result  :=  FPedidosItens;
+end;
+
+end.

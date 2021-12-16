@@ -1,0 +1,149 @@
+unit Model.DAO.Produtos;
+
+interface
+
+uses
+  Model.Entidades.Produtos,
+  Data.DB,
+  Model.DAO.Interfaces,
+  Model.Conexao.Interfaces,
+  Model.Conexao.Firedac;
+
+type
+  TDAOProduto = class(TInterfacedObject, iDAOEntidade<TProdutos>)
+    private
+      FProdutos: TProdutos;
+      FConexao: iConexao;
+      FDataSet: TDataSet;
+
+    public
+      constructor Create;
+      destructor  Destroy; override;
+      class function New: iDAOEntidade<TProdutos>;
+      function Listar : iDaoEntidade<TProdutos>;
+      function ListarPorId(Id: Integer): iDaoEntidade<TProdutos>;
+      function Excluir(Id: Integer): iDaoEntidade<TProdutos>; overload;
+      function Excluir: iDaoEntidade<TProdutos>; overload;
+      function Atualizar: iDaoEntidade<TProdutos>;
+      function Inserir: iDaoEntidade<TProdutos>;
+      function DataSet(DataSource: TDataSource):  iDaoEntidade<TProdutos>;
+      function This: TProdutos;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TDAOPedido }
+
+function TDAOProduto.Atualizar: iDaoEntidade<TProdutos>;
+begin
+  Result := Self;
+  try
+    FConexao
+      .SQL('update clientes set nome=:nome, cidade=:cidade, uf=:uf where codigo=:id')
+      .Params('nome', FClientes.Nome)
+      .Params('cidade', FClientes.Cidade)
+      .Params('uf', FClientes.Uf)
+      .Params('id', FClientes.Codigo)
+      .ExecSQl;
+  except on e: Exception do
+    raise Exception.Create('Erro ao tentar atualizar o registro: ' + e.ToString);
+  end;
+end;
+
+constructor TDAOProduto.Create;
+begin
+  FConexao  :=  TModelConexao.New;
+  FClientes :=  TClientes.Create(Self)
+end;
+
+function TDAOProduto.DataSet(DataSource: TDataSource): iDaoEntidade<TClientes>;
+begin
+  Result  :=  Self;
+  if not Assigned(FDataSet) then
+    DataSource.DataSet  :=  FConexao.DataSet
+  else
+    DataSource.DataSet  :=  FDataSet;
+end;
+
+destructor TDAOProduto.Destroy;
+begin
+  FClientes.DisposeOf;
+  inherited;
+end;
+
+function TDAOProduto.Excluir(Id: Integer): iDaoEntidade<TClientes>;
+begin
+  Result := Self;
+  try
+    FConexao
+      .SQL('delete from clientes where codigo=:id')
+      .Params('id', Id)
+      .ExecSQl;
+  except on e: Exception do
+    raise Exception.Create('Erro ao tentar excluir o registro: ' + e.ToString);
+  end;
+end;
+
+function TDAOProduto.Excluir: iDaoEntidade<TClientes>;
+begin
+  Result := Self;
+  try
+    FConexao
+      .SQL('delete from clientes where codigo=:id')
+      .Params('id', FClientes.Codigo)
+      .ExecSQl;
+  except on e: Exception do
+    raise Exception.Create('Erro ao tentar excluir o registro: ' + e.ToString);
+  end;
+end;
+
+function TDAOProduto.Inserir: iDaoEntidade<TClientes>;
+begin
+  Result := Self;
+  try
+    FConexao
+      .SQL('insert into clientes (nome, cidade, uf) values (:nome, :cidade, :uf)')
+      .Params('nome', FClientes.Nome)
+      .Params('cidade', FClientes.Cidade)
+      .Params('uf', FClientes.Uf)
+      .ExecSQl;
+  except on e: Exception do
+    raise Exception.Create('Erro ao tentar inserir o registro: ' + e.ToString);
+  end;
+end;
+
+function TDAOProduto.Listar: iDaoEntidade<TClientes>;
+begin
+  Result  :=  Self;
+  FDataSet  :=
+    FConexao
+      .SQL('select * from clientes')
+      .Open
+      .DataSet;
+end;
+
+function TDAOProduto.ListarPorId(Id: Integer): iDaoEntidade<TClientes>;
+begin
+  Result  :=  Self;
+  FDataSet  :=
+    FConexao
+      .SQL('select * from clientes where codigo=:id')
+      .Params('id', Id)
+      .Open
+      .DataSet;
+end;
+
+class function TDAOProduto.New: iDAOEntidade<TClientes>;
+begin
+  Result  :=  Self.Create;
+end;
+
+function TDAOProduto.This: TProdutos;
+begin
+  Result  :=  FProdutos;
+end;
+
+end.

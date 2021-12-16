@@ -1,0 +1,16 @@
+unit Model.Entidades.Produtos;
+
+interface
+
+type
+  TProdutos = class
+    private
+    public
+      constructor Create;
+      destructor Destroy; override;
+      function Codigo(Value: Integer): TProdutoss; overload;
+      function Codigo: Integer; overload;
+  end;
+implementation
+
+end.

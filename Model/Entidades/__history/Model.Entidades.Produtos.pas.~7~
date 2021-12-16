@@ -1,0 +1,66 @@
+unit Model.Entidades.Produtos;
+
+interface
+
+type
+  TProdutos = class
+    private
+      FCodigo : Integer;
+      FDescricao: string;
+      FPreco_Venda: Double;
+    public
+      constructor Create;
+      destructor Destroy; override;
+      function Codigo(Value: Integer): TProdutos; overload;
+      function Codigo: Integer; overload;
+      function Descricao(Value: string): TProdutos; overload;
+      function Descricao: string; overload;
+      function Preco_Venda(Value: Double): TProdutos; overload;
+      function Preco_Venda: Double; overload;
+  end;
+implementation
+
+{ TProdutos }
+
+function TProdutos.Codigo: Integer;
+begin
+
+end;
+
+function TProdutos.Codigo(Value: Integer): TProdutos;
+begin
+
+end;
+
+constructor TProdutos.Create;
+begin
+
+end;
+
+function TProdutos.Descricao(Value: string): TProdutos;
+begin
+
+end;
+
+function TProdutos.Descricao: string;
+begin
+
+end;
+
+destructor TProdutos.Destroy;
+begin
+
+  inherited;
+end;
+
+function TProdutos.Preco_Venda: Double;
+begin
+
+end;
+
+function TProdutos.Preco_Venda(Value: Double): TProdutos;
+begin
+
+end;
+
+end.

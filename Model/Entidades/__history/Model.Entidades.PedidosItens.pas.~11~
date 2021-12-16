@@ -1,0 +1,99 @@
+unit Model.Entidades.PedidosItens;
+
+interface
+
+type
+  TPedidosItens = class
+    private
+      FNumero_Item    : Integer;
+      FNumero_Pedido  : Integer;
+      FId_Produto     : Integer;
+      FQtd            : Double;
+      FPreco_Venda    : Double;
+
+    public
+      constructor Create;
+      destructor Destroy; override;
+      function Numero_Item(Value: Integer): TPedidosItens; overload;
+      function Numero_Item: Integer; overload;
+      function Numero_Pedido(Value: Integer): TPedidosItens; overload;
+      function Numero_Pedido: Integer; overload;
+      function Id_Produto(Value: Integer): TPedidosItens; overload;
+      function Id_Produto: Integer; overload;
+      function Qtd(Value: Double): TPedidosItens; overload;
+      function Qtd: Double; overload;
+      function Preco_Venda(Value: Double): TPedidosItens; overload;
+      function Preco_Venda: Double; overload;
+  end;
+
+implementation
+
+{ TPedidosItens }
+
+constructor TPedidosItens.Create;
+begin
+
+end;
+
+destructor TPedidosItens.Destroy;
+begin
+
+  inherited;
+end;
+
+function TPedidosItens.Id_Produto(Value: Integer): TPedidosItens;
+begin
+  Result      :=  Self;
+  FId_Produto :=  Value;
+end;
+
+function TPedidosItens.Id_Produto: Integer;
+begin
+  Result  :=  FId_Produto;
+end;
+
+function TPedidosItens.Numero_Item: Integer;
+begin
+  Result  :=  FNumero_Item;
+end;
+
+function TPedidosItens.Numero_Item(Value: Integer): TPedidosItens;
+begin
+  Result        :=  Self;
+  FNumero_Item  :=  Value;
+end;
+
+function TPedidosItens.Numero_Pedido(Value: Integer): TPedidosItens;
+begin
+  Result          :=  Self;
+  FNumero_Pedido  :=  Value;
+end;
+
+function TPedidosItens.Numero_Pedido: Integer;
+begin
+  Result  :=  FNumero_Pedido;
+end;
+
+function TPedidosItens.Preco_Venda: Double;
+begin
+  Result  :=  FPreco_Venda;
+end;
+
+function TPedidosItens.Preco_Venda(Value: Double): TPedidosItens;
+begin
+  Result        :=  Self;
+  FPreco_Venda  :=  Value;
+end;
+
+function TPedidosItens.Qtd(Value: Double): TPedidosItens;
+begin
+  Result      :=  Self;
+  FQtd        :=  Value;
+end;
+
+function TPedidosItens.Qtd: Double;
+begin
+
+end;
+
+end.

@@ -1,0 +1,25 @@
+unit Controller.Interfaces;
+
+interface
+
+uses
+  Model.DAO.Interfaces,
+  Model.Entidades.Pedidos,
+  Model.Entidades.PedidosItens;
+
+type
+
+  iControllerEntidades = interface;
+
+  iController = interface
+    function Entidades : iControllerEntidades;
+  end;
+
+  iControllerEntidades = interface
+    function Pedidos :  iDaoEntidade<TPedidos>;
+    function PedidosItens : iDaoEntidade<TPedidosItens>;
+  end;
+
+implementation
+
+end.

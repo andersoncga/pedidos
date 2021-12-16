@@ -1,0 +1,23 @@
+unit Model.Entidades.Produtos;
+
+interface
+
+type
+  TProdutos = class
+    private
+      FCodigo : Integer;
+      FDescricao: string;
+      FPreco_Venda: Double;
+    public
+      constructor Create;
+      destructor Destroy; override;
+      function Codigo(Value: Integer): TProdutos; overload;
+      function Codigo: Integer; overload;
+      function Descricao(Value: string): TProdutos; overload;
+      function Descricao: string; overload;
+      function Preco_Venda(Value: Double): TProdutos; overload;
+      function Preco_Venda: Double; overload;
+  end;
+implementation
+
+end.
