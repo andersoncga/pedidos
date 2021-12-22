@@ -24,7 +24,6 @@ object ViewPrincipal: TViewPrincipal
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 562
     object lbl_client: TLabel
       Left = 15
       Top = 13
@@ -67,8 +66,6 @@ object ViewPrincipal: TViewPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitWidth = 562
-    ExplicitHeight = 267
     object Label1: TLabel
       Left = 15
       Top = 135

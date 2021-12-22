@@ -23,11 +23,14 @@ uses
   FireDAC.DApt,
   FireDAC.Comp.DataSet,
   Model.Conexao.Interfaces,
-  Data.DB;
+  Data.DB,
+  System.SysUtils,
+  Vcl.Forms;
 
 type
   TModelConexao = class(TInterfacedObject, iConexao)
     private
+      FDriver     : TFDPhysMySQLDriverLink;
       FConexao    : TFDConnection;
       FQuery      : TFDQuery;
 
@@ -49,6 +52,8 @@ implementation
 
 constructor TModelConexao.Create;
 begin
+  FDriver           :=  TFDPhysMySQLDriverLink.Create(nil);
+  FDriver.VendorLib :=  ExtractFilePath(Application.ExeName) + 'libmysql.dll';
   FConexao          :=  TFDConnection.Create(nil);
   FQuery            :=  TFDQuery.Create(nil);
   FQuery.Connection :=  FConexao;

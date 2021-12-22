@@ -108,7 +108,6 @@ begin
     .PedidosItens
     .ListarPorId(ds_pedidos.DataSet.FieldByName('numero_pedido').AsInteger)
     .DataSet(ds_itens);
-
   if not ds_pedidos.DataSet.IsEmpty then
     lbl_total_pedido.Caption  :=
       'Total do Pedido R$ ' +
